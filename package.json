@@ -1,0 +1,28 @@
+{
+  "name": "sonoma-food-taxi",
+  "version": "1.0.0",
+  "description": "A locality based web application, whereby customers can order from top 10 best restaurants!",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tnsherpa1/sonoma-food-taxi.git"
+  },
+  "author": "Tashi Sherpa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tnsherpa1/sonoma-food-taxi/issues"
+  },
+  "homepage": "https://github.com/tnsherpa1/sonoma-food-taxi#readme",
+  "dependencies": {
+    "bcryptjs": "^2.3.0",
+    "body-parser": "^1.15.0",
+    "dotenv": "^2.0.0",
+    "express": "^4.13.4",
+    "jwt-simple": "^0.5.0",
+    "moment": "^2.12.0",
+    "mongoose": "^4.4.10"
+  }
+}
