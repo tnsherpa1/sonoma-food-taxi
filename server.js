@@ -8,6 +8,14 @@ var hbs= require('hbs');
 app.use(bodyparser.urlEncoded({ extended: true }));
 app.use(bodyparser.json());
 
+//serve static files from public folder
+app.use(express.static(__dirname + '/public'));
+
+//set view engine to hbs
+app.set('view engine', 'hbs');
+
+//connect to mongodb
+mongoose.connect('mongodb://localhost/sonoma_food_taxi');
 
 
 app.listen(3000, function(){
