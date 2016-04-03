@@ -81,14 +81,54 @@ function configRoutes($stateProvider, $urlRouterProvider, $locationProvider) {
 		return deferred.promise;
 	}
 }
-////////////////////////////////////////
-////CONTROLLERS////////CONTROLLERS/////
-//////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+////CONTROLLERS////////CONTROLLERS/////////CONTROLLERS////////CONTROLLERS/////
+/////////////////////////////////////////////////////////////////////////////
 MainCtrl.$inject = ["Account"];
 function MainCtrl(Account) {
 	var vm = this;
+	vm.currentCustomer = function() {
+		return Account.currentCustomer;
+	};
 }
 
+LoginCtrl.$inject = ["$location", "Account"];
+function LoginCtrl($location, Account) {
+	var vm = this;
+	vm.new_customer = {}; //form_data
+	vm.login = function() {
+		Account
+		.login(vm.new_customer)
+		.then(function() {
+			vm.new_customer = {};
+			$location.path('/profile');
+		});
+	};
+}
+
+SignupCtrl.$inject = ["$location", "Account"];
+function SignupCtrl($location, Account) {
+	var vm = this;
+	vm.new_customer = {};
+
+	vm.signup = function() {
+		Account
+			.signup(vm.new_customer)
+			.then(function (response) {
+				vm.new_customer = {};
+				$location.path('/profile');
+			});
+	};
+}
+
+logoutCtrl.$inject = ["$location", "Account"];
+function logoutCtrl($location, Account) {
+	Account
+		.logout()
+		.then(function () {
+			$location.path('/login');
+	});
+}
 
 
 
