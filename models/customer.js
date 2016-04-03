@@ -29,8 +29,9 @@ bcrypt.genSalt(10, function(err,salt) {
 		});
 	});
 });
+
 customerSchema.methods.comparePassword = function ( password, done ) {
-	bcrypt.compare(password, this.password, function (err, isMatch){
+	bcrypt.compare(password, this.password, function (err, isMatch) {
 		done( err, isMatch );
 	});
 };
