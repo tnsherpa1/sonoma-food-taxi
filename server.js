@@ -3,12 +3,13 @@ var app = express();
 var bodyparser = require('body-parser');
 var mongoose = require('mongoose');
 var hbs= require('hbs');
+var auth = require('./resources/auth');
 
 //require and load dotenv
 require('dotenv').load();
 
 //configure body-parser for receiving form data
-app.use(bodyparser.urlEncoded({ extended: true }));
+app.use(bodyparser.urlencoded({ extended: true }));
 app.use(bodyparser.json());
 
 //serve static files from public folder

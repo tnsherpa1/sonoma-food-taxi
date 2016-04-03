@@ -2,12 +2,15 @@ var jwt = require('jwt-simple');
 var moment = require('moment');
 
 module.exports = {
-	/*	Login Required Middleware */
+	/*	
+	* Login Required Middleware
+	*/
 	ensureAuthenticated: function(req, res, next) {
 		if (!req.headers.authorization) {
 			return res.status(401)
 								.send({ message: 'Please make sure your request has an Authorization header.'});
 		}
+		
 		var token = req.headers.authorization.split(' ')[1];
 		var payload = null;
 
@@ -32,6 +35,6 @@ module.exports = {
 			iat: moment().unix(),
 			exp: moment().add(14, 'days').unix()
 		};
-		return jwt.encode(payload, process.enc.TOKEN_SECRET);
+		return jwt.encode(payload, process.env.TOKEN_SECRET);
 	}
 };
