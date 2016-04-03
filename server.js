@@ -20,6 +20,9 @@ mongoose.connect('mongodb://localhost/sonoma_food_taxi');
 //require models
 var Customer = require('./models/customer');
 
+///////API////ROUTES///////
+app.get('/')
+
 
 app.listen(3000, function(){
 	console.log("Server started at ", 3000);
