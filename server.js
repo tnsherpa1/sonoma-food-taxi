@@ -68,6 +68,7 @@ app.post('/login', function (req,res){
 	});
 });
 
+
 /*app.get('/customers', function(req, res){
 	Customer.find({}, function(err, customers) {
 		if (err) {
