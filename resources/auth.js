@@ -23,15 +23,15 @@ module.exports = {
 		if (payload.exp <= moment().unix()) {
 			return res.status(401).send({ message: 'Token has expired.'});
 		}
-		req.user = payload.sub;
+		req.customer = payload.sub;
 		next();
 	},
 	/*
 	 * Generate JSON Web Token
 	*/
-	createJWT: function (user) {
+	createJWT: function (customer) {
 		var payload = {
-			sub: user._id,
+			sub: customer._id,
 			iat: moment().unix(),
 			exp: moment().add(14, 'days').unix()
 		};
