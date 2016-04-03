@@ -17,6 +17,9 @@ app.set('view engine', 'hbs');
 //connect to mongodb
 mongoose.connect('mongodb://localhost/sonoma_food_taxi');
 
+//require models
+var Customer = require('./models/customer');
+
 
 app.listen(3000, function(){
 	console.log("Server started at ", 3000);
