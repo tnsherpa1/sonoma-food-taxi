@@ -23,8 +23,31 @@ mongoose.connect('mongodb://localhost/sonoma_food_taxi');
 
 //require models
 var Customer = require('./models/customer');
-
-///////API////ROUTES///////
+var Restaurant = require('./models/Restaurant');
+  ////////////////////////////
+ ///////API////ROUTES///////
+//////////////////////////
+app.post('/restaurants', function(req,res){
+	var restaurant = new Restaurant({
+		Name: req.body.Name,
+		Cuisine: req.body.Cuisine,
+		Description: req.body.Description,
+		Location: req.body.Location,
+		OpeningHours: req.body.OpeningHours
+	});
+	restaurant.save(function (err, newRestaurant) {
+		if (err) {
+			res.send({"Error": err.message});
+		} else {
+			res.json({"Added Restaurant": newRestaurant})
+		}
+	});
+});
+app.get('/restaurants', function(req, res){
+	Restaurant.find({}, function(err, rs) {
+		res.send({"RestaurantsList": rs});
+	});
+});
 /*app.get('/api/me', auth.ensureAuthenticated, function (req, res) {
   Customer.findById(req.customer, function (err, customer) {
     res.send(customer);
