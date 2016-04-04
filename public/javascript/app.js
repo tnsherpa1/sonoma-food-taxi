@@ -6,7 +6,8 @@ app.controller('LoginCtrl', LoginCtrl);
 app.controller('SignupCtrl', SignupCtrl);
 app.controller('LogoutCtrl', LogoutCtrl);
 app.controller('ProfileCtrl', ProfileCtrl);
-app.controller('ContactCtrl, ContactCtrl');
+app.controller('ContactCtrl', ContactCtrl);
+app.controller('RestaurantsCtrl', RestaurantsCtrl);
 
 app.service('Account', Account);
 app.config(configRoutes);
@@ -72,7 +73,11 @@ function configRoutes($stateProvider, $urlRouterProvider, $locationProvider) {
 			templateUrl: 'templates/contact.html',
 			controller: 'ContactCtrl'
 		})
-		;
+		.state('restaurants',{
+			url: '/restaurants',
+			templateUrl: 'templates/restaurants.html',
+			controller: 'RestaurantsCtrl'
+		});
 	function skipIfLoggedIn($q, $auth) {
 		var deferred = $q.defer();
 		if ($auth.isAuthenticated()) {
@@ -164,7 +169,10 @@ ContactCtrl.$inject = ["$location", "Account"];
 function ContactCtrl($location, Account) {
 
 }
-
+RestaurantsCtrl.$inject = ["$http"];
+	function RestaurantsCtrl(http){
+		return $http.get('/restaurants');
+	}
 ///////////////////////////////////////////////////////////////////////////////
 ////SERVICES////////SERVICES/////////SERVICES////////SERVICES/////SERVICES////
 /////////////////////////////////////////////////////////////////////////////

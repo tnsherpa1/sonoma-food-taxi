@@ -43,11 +43,11 @@ app.post('/restaurants', function(req,res){
 		}
 	});
 });
-app.get('/restaurants', function(req, res){
+/*app.get('/restaurants', function(req, res){
 	Restaurant.find({}, function(err, rs) {
 		res.send({"RestaurantsList": rs});
 	});
-});
+});*/
 /*app.get('/api/me', auth.ensureAuthenticated, function (req, res) {
   Customer.findById(req.customer, function (err, customer) {
     res.send(customer);
