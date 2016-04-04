@@ -1,7 +1,7 @@
 var app = angular.module("foodTaxi", ['ui.router', 'satellizer']);
 
 app.controller('MainCtrl', MainCtrl);
-// app.controller('HomeCtrl', HomeCtrl);
+app.controller('HomeCtrl', HomeCtrl);
 app.controller('LoginCtrl', LoginCtrl);
 app.controller('SignupCtrl', SignupCtrl);
 app.controller('logoutCtrl', logoutCtrl);
@@ -39,7 +39,7 @@ function configRoutes($stateProvider, $urlRouterProvider, $locationProvider) {
 		})
 		.state('login',{
 			url: '/login',
-			templateUrl:'templates/login',
+			templateUrl:'templates/login.html',
 			controller: 'LoginCtrl',
 			controllerAs: 'lc',
 			resolve: {
@@ -90,6 +90,11 @@ function MainCtrl(Account) {
 	vm.currentCustomer = function() {
 		return Account.currentCustomer;
 	};
+}
+
+HomeCtrl.$inject = ["Account"];
+function HomeCtrl(Account) {
+	
 }
 
 LoginCtrl.$inject = ["$location", "Account"];
