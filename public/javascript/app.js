@@ -147,7 +147,7 @@ function LogoutCtrl($location, Account) {
 	});
 }
 
-ProfileCtrl.$inject = ["$location", "$Account"];
+ProfileCtrl.$inject = ["$location", "Account"];
 function ProfileCtrl($location, Account) {
 	var vm = this;
 	vm.new_profile = {};
@@ -159,6 +159,10 @@ function ProfileCtrl($location, Account) {
 			vm.showEditForm =false;
 		});
 	};
+}
+ContactCtrl.$inject = ["$location", "Account"];
+function ContactCtrl($location, Account) {
+
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -246,9 +250,6 @@ function Account($http, $q, $auth) {
 					})
 		);
 	}
-
-	
-
 }
 
 
