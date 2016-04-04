@@ -43,30 +43,6 @@ app.post('/restaurants', function(req,res){
 		}
 	});
 });
-/*app.get('/restaurants', function(req, res){
-	Restaurant.find({}, function(err, rs) {
-		res.send({"RestaurantsList": rs});
-	});
-});*/
-/*app.get('/api/me', auth.ensureAuthenticated, function (req, res) {
-  Customer.findById(req.customer, function (err, customer) {
-    res.send(customer);
-  });
-});
-
-app.put('/api/me', auth.ensureAuthenticated, function (req, res) {
-  Customer.findById(req.customer, function (err, customer) {
-    if (!customer) {
-      return res.status(400).send({ message: 'Customer not found.' });
-    }
-    customer.displayName = req.body.displayName || customer.displayName;
-    customer.customername = req.body.customername || customer.customername;
-    customer.email = req.body.email || customer.email;
-    customer.save(function(err) {
-      res.send(customer);
-    });
-  });
-});*/
 app.get('/api/customers', auth.ensureAuthenticated, function (req,res){
 	Customer.findById(req.customer, function( err,customer ) {
 		res.send(customer);
@@ -119,7 +95,15 @@ app.get('/customers', function(req, res){
 	});
 });
 
-
+app.get('/restaurants', function(req,res){
+	Restaurant.find({}, function(err, restaurants){
+		if (err) {
+			console.log(err);
+		} else {
+			res.json({"restaurantList": restaurants});
+		}
+	});
+});
 
 /*
 * Catch all routes
