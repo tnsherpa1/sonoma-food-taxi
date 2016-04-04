@@ -52,7 +52,7 @@ app.post('/signup', function (req, res){
 	});
 });
 
-app.post('/login', function (req,res){
+app.post('/login', function (req,res) {
 	Customer.findOne({ email: req.body.email }, '+password', function (err, customer) {
 		if (!customer) {
 			return res.status(401).send({message: 'Invalid Email or Password'});
