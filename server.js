@@ -25,15 +25,34 @@ mongoose.connect('mongodb://localhost/sonoma_food_taxi');
 var Customer = require('./models/customer');
 
 ///////API////ROUTES///////
+/*app.get('/api/me', auth.ensureAuthenticated, function (req, res) {
+  Customer.findById(req.customer, function (err, customer) {
+    res.send(customer);
+  });
+});
+
+app.put('/api/me', auth.ensureAuthenticated, function (req, res) {
+  Customer.findById(req.customer, function (err, customer) {
+    if (!customer) {
+      return res.status(400).send({ message: 'Customer not found.' });
+    }
+    customer.displayName = req.body.displayName || customer.displayName;
+    customer.customername = req.body.customername || customer.customername;
+    customer.email = req.body.email || customer.email;
+    customer.save(function(err) {
+      res.send(customer);
+    });
+  });
+});*/
 app.get('/api/customers', auth.ensureAuthenticated, function (req,res){
 	Customer.findById(req.customer, function( err,customer ) {
-		res.send();
+		res.send(customer);
 	});
 });
 /*
  Auth Routes
 */
-app.post('/signup', function (req, res){
+app.post('/auth/signup', function (req, res){
 	Customer.findOne({ email: req.body.email }, function (err, existingCustomer) {
 		if (existingCustomer) {
 			return res.status(409).send({ message: 'Email is already taken' });
@@ -52,7 +71,7 @@ app.post('/signup', function (req, res){
 	});
 });
 
-app.post('/login', function (req,res) {
+app.post('/auth/login', function (req,res) {
 	Customer.findOne({ email: req.body.email }, '+password', function (err, customer) {
 		if (!customer) {
 			return res.status(401).send({message: 'Invalid Email or Password'});
@@ -69,13 +88,13 @@ app.post('/login', function (req,res) {
 });
 
 
-/*app.get('/customers', function(req, res){
+app.get('/customers', function(req, res){
 	Customer.find({}, function(err, customers) {
 		if (err) {
 			res.send({error: err.message});
 			} else res.json({myCustomers: customers});
 	});
-});*/
+});
 
 
 

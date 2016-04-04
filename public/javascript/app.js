@@ -4,7 +4,7 @@ app.controller('MainCtrl', MainCtrl);
 app.controller('HomeCtrl', HomeCtrl);
 app.controller('LoginCtrl', LoginCtrl);
 app.controller('SignupCtrl', SignupCtrl);
-app.controller('logoutCtrl', logoutCtrl);
+app.controller('LogoutCtrl', LogoutCtrl);
 // app.controller('ProfileCtrl', ProfileCtrl);
 
 app.service('Account', Account);
@@ -131,13 +131,27 @@ function SignupCtrl($location, Account) {
 	};
 }
 
-logoutCtrl.$inject = ["$location", "Account"];
-function logoutCtrl($location, Account) {
+LogoutCtrl.$inject = ["$location", "Account"];
+function LogoutCtrl($location, Account) {
 	Account
 		.logout()
 		.then(function () {
 			$location.path('/login');
 	});
+}
+
+ProfileCtrl.$inject = ["$location", "$Account"];
+function ProfileCtrl($location, Account) {
+	var vm = this;
+	vm.new_profile = {};
+
+	vm.updateProfile = function() {
+		Account
+		.updateProfile(vm.new_profile)
+		.then (function() {
+			vm.showEditForm =false;
+		});
+	};
 }
 
 ///////////////////////////////////////////////////////////////////////////////
