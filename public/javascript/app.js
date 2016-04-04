@@ -1,11 +1,11 @@
 var app = angular.module("foodTaxi", ['ui.router', 'satellizer']);
 
 app.controller('MainCtrl', MainCtrl);
-app.controller('HomeCtrl', HomeCtrl);
+// app.controller('HomeCtrl', HomeCtrl);
 app.controller('LoginCtrl', LoginCtrl);
 app.controller('SignupCtrl', SignupCtrl);
 app.controller('logoutCtrl', logoutCtrl);
-app.controller('ProfileCtrl', ProfileCtrl);
+// app.controller('ProfileCtrl', ProfileCtrl);
 
 app.service('Account', Account);
 app.config(configRoutes);
