@@ -170,8 +170,15 @@ function ContactCtrl($location, Account) {
 
 }
 RestaurantsCtrl.$inject = ["$http"];
-	function RestaurantsCtrl(http){
-		return $http.get('/restaurants');
+	function RestaurantsCtrl($http){
+		var vm = this;
+		vm.restaurants = [];
+		$http
+				.get('/api/restaurants')
+				.then(function(response) {
+					vm.restaurants = response.data;
+					console.log(vm.restaurants);
+				});
 	}
 ///////////////////////////////////////////////////////////////////////////////
 ////SERVICES////////SERVICES/////////SERVICES////////SERVICES/////SERVICES////
@@ -240,7 +247,7 @@ function Account($http, $q, $auth) {
 				self.customer = null;
 				deferred.reject();
 			}
-		)
+		);
 		self.customer = promise = deferred.promise;
 		return promise;
 	}

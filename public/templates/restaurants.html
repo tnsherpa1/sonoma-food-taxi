@@ -1,1 +1,10 @@
-<h1> Food from the finest restaurants in Sonoma, CA </h1>
+<div class="content" ng-controller="RestaurantsCtrl as places">
+<h3> Step1: Pick a Restaurant </h3>
+<div id="restBox" ng-repeat="place in places.restaurants">
+		<p><strong>Name: {{place.Name}}</strong></p>
+		<p><strong>Cuisine: {{place.Cuisine}}</strong></p>
+		<p><strong>Address: {{place.Location}}</strong></p>
+		<hr>
+</div>
+	
+</div>

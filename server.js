@@ -39,7 +39,7 @@ app.post('/restaurants', function(req,res){
 		if (err) {
 			res.send({"Error": err.message});
 		} else {
-			res.json({"Added Restaurant": newRestaurant})
+			res.json({"Added Restaurant": newRestaurant});
 		}
 	});
 });
@@ -95,12 +95,12 @@ app.get('/customers', function(req, res){
 	});
 });
 
-app.get('/restaurants', function(req,res){
+app.get('/api/restaurants', function(req,res){
 	Restaurant.find({}, function(err, restaurants){
 		if (err) {
 			console.log(err);
 		} else {
-			res.json({"restaurantList": restaurants});
+			res.json(restaurants);
 		}
 	});
 });
