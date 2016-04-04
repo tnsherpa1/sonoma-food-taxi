@@ -5,7 +5,8 @@ app.controller('HomeCtrl', HomeCtrl);
 app.controller('LoginCtrl', LoginCtrl);
 app.controller('SignupCtrl', SignupCtrl);
 app.controller('LogoutCtrl', LogoutCtrl);
-// app.controller('ProfileCtrl', ProfileCtrl);
+app.controller('ProfileCtrl', ProfileCtrl);
+app.controller('ContactCtrl, ContactCtrl');
 
 app.service('Account', Account);
 app.config(configRoutes);
@@ -65,7 +66,13 @@ function configRoutes($stateProvider, $urlRouterProvider, $locationProvider) {
 			resolve: {
 				loginRequired: loginRequired
 			}
-		});
+		})
+		.state('contact',{
+			url: '/contact',
+			templateUrl: 'templates/contact.html',
+			controller: 'ContactCtrl'
+		})
+		;
 	function skipIfLoggedIn($q, $auth) {
 		var deferred = $q.defer();
 		if ($auth.isAuthenticated()) {
