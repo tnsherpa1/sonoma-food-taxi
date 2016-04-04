@@ -54,7 +54,7 @@ function configRoutes($stateProvider, $urlRouterProvider, $locationProvider) {
 		.state('logout',{
 			url: '/logout',
 			templateUrl: 'templates/logout',
-			controller: 'logoutCtrl',
+			controller: 'LogoutCtrl',
 			resolve: {
 				loginRequired: loginRequired
 			}
