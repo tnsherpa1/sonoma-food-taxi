@@ -30,12 +30,12 @@ var Menu = require('./models/menu');
 //////////////////////////
 app.post('/restaurants', function(req,res){
 	var restaurant = new Restaurant({
-		Name: req.body.Name,
-		Cuisine: req.body.Cuisine,
-		Description: req.body.Description,
-		Location: req.body.Location,
-		MenuItems: [],
-		OpeningHours: req.body.OpeningHours
+		name: req.body.name,
+		cuisine: req.body.cuisine,
+		description: req.body.description,
+		location: req.body.location,
+		menuItems: [],
+		openingHours: req.body.openingHours
 	});
 	restaurant.save(function (err, newRestaurant) {
 		if (err) {
