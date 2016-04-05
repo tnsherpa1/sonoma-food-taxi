@@ -6,8 +6,10 @@ var restaurantSchema = new Schema({
 	Cuisine: String,
 	Description: String,
 	Location: String,
+	MenuItems: [{type: Schema.Types.ObjectId, ref: 'Menu'}],
 	OpeningHours: String
 });
 
 var Restaurant = mongoose.model('Restaurant', restaurantSchema);
+
 module.exports = Restaurant;
