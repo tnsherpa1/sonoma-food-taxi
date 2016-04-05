@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var bcrypt = require('bcryptjs');
 
-var customerSchema = new Schema({
+var CustomerSchema = new Schema({
 	created: { type: Date },
 	updated: { type: Date },
 	name: {type: String},
@@ -11,7 +11,7 @@ var customerSchema = new Schema({
 });
 
 
-customerSchema.pre('save', function(next) {
+CustomerSchema.pre('save', function(next) {
 	now = new Date();
 	this.updated = now;
 	if (!this.created) {
@@ -30,11 +30,11 @@ bcrypt.genSalt(10, function(err,salt) {
 	});
 });
 
-customerSchema.methods.comparePassword = function ( password, done ) {
+CustomerSchema.methods.comparePassword = function ( password, done ) {
 	bcrypt.compare(password, this.password, function (err, isMatch) {
 		done( err, isMatch );
 	});
 };
 
-var Customer = mongoose.model('Customer', customerSchema);
+var Customer = mongoose.model('Customer', CustomerSchema);
 module.exports = Customer;

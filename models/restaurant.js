@@ -1,15 +1,14 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var restaurantSchema = new Schema({
-	Name: String,
-	Cuisine: String,
-	Description: String,
-	Location: String,
-	MenuItems: [{type: Schema.Types.ObjectId, ref: 'Menu'}],
-	OpeningHours: String
+var RestaurantSchema = new Schema({
+	name: String,
+	cuisine: String,
+	description: String,
+	location: String,
+	menu: [{type: Schema.Types.ObjectId, ref: 'Menu'}],
+	openingHours: String
 });
 
-var Restaurant = mongoose.model('Restaurant', restaurantSchema);
-
+var Restaurant = mongoose.model('Restaurant', RestaurantSchema);
 module.exports = Restaurant;
