@@ -80,9 +80,9 @@ function configRoutes($stateProvider, $urlRouterProvider, $locationProvider) {
 			controller: 'RestaurantsCtrl'
 		})
 		.state('menu',{
-			url: '/menu',
-			templateUrl: 'templates/menu.html',
-			controller: 'MenuCtrl'
+			url: '/restaurants/:id',
+			templateUrl: 'templates/restaurant.html',
+			controller: 'RestaurantCtrl'
 		});
 	function skipIfLoggedIn($q, $auth) {
 		var deferred = $q.defer();
@@ -119,7 +119,7 @@ function HomeCtrl(Account) {
 	
 }
 function MenuCtrl() {
-	
+
 }
 
 LoginCtrl.$inject = ["$location", "Account"];
@@ -189,6 +189,19 @@ RestaurantsCtrl.$inject = ["$http"];
 					console.log(vm.restaurants);
 				});
 	}
+//TODO: use state params to grab specific restaurant
+RestaurantCtrl.$inject = ["$http", "$stateParams"];
+function RestaurantCtrl($http, $stateParams){
+	var vm = this;
+	vm.menu = [];
+	$http
+			.get('/api/restaurants/:id')
+			.then(function(response) {
+				vm.restaurant = response.data;
+				console.log(vm.restaurant);
+				console.log("fasdf: ", $stateParams.id)
+			});
+}
 ///////////////////////////////////////////////////////////////////////////////
 ////SERVICES////////SERVICES/////////SERVICES////////SERVICES/////SERVICES////
 /////////////////////////////////////////////////////////////////////////////

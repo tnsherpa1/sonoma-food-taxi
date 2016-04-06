@@ -107,6 +107,17 @@ app.get('/api/restaurants', function(req,res){
 	});
 });
 
+app.get('/api/restaurants/:id', function(req, res){
+	var restaurantId = req.params.id;
+	Restaurant.findById( restaurantId, function (err, restaurant) {
+		if (err) {
+			res.status(500).json({ error: err.message });
+		} else {
+			res.json(restaurant);
+		}
+	});
+});
+
 /*
 * Catch all routes
 */
