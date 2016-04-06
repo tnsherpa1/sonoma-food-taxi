@@ -1,8 +1,14 @@
-<div class="content" ng-controller="RestaurantCtrl as restaurant">
 <h3> Step2: Select Food Items</h3>		
-<h4>Menu</h4>
-	<div class="restBox" ng-repeat="food in restaurant.menu.foods">
-		<p>Item: {{food.name}}</p>
+<div class="content restBox" ng-controller="RestaurantCtrl as restaurant">
+<h4>Menu:</h4>
+	<span class="pull-left"><strong>Items:</strong></span><span class="pull-right"><strong>Price:</strong>&nbsp &nbsp &nbsp &nbsp &nbsp</span>
+	<br>
+	<div ng-repeat="food in restaurant.menu.foods">
+		<span class= "pull-left">{{food.name}}</span>
+		<span class= "pull-right"> {{food.price | currency}}
+		&nbsp<button class="btn btn-sm btn-success"><i class="fa fa-cart-plus"></i></button>
+		</span>
+		<br>
 		<hr>
 	</div>
 </div>
