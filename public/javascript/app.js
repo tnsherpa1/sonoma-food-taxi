@@ -11,6 +11,7 @@ app.controller('RestaurantsCtrl', RestaurantsCtrl);
 app.controller('RestaurantCtrl', RestaurantCtrl);
 
 app.service('Account', Account);
+app.service('Cart', Cart);
 app.config(configRoutes);
 
 // Routes
@@ -288,6 +289,8 @@ function Account($http, $q, $auth) {
 		);
 	}
 }
+
+
 
 
 
