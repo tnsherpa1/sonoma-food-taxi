@@ -1,4 +1,4 @@
-var mongoose = require('mongoose');
+var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var FoodSchema = new Schema({
@@ -6,6 +6,6 @@ var FoodSchema = new Schema({
 	price: Number
 });
 
-var Food = mongoose.model('Food', 'FoodSchema');
+var Food = mongoose.model("Food", FoodSchema);
 module.exports = Food;
 
