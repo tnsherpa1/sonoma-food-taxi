@@ -8,7 +8,7 @@ app.controller('LogoutCtrl', LogoutCtrl);
 app.controller('ProfileCtrl', ProfileCtrl);
 app.controller('ContactCtrl', ContactCtrl);
 app.controller('RestaurantsCtrl', RestaurantsCtrl);
-// app.controller('MenuCtrl', MenuCtrl);
+app.controller('MenuCtrl', MenuCtrl);
 
 app.service('Account', Account);
 app.config(configRoutes);
@@ -81,7 +81,8 @@ function configRoutes($stateProvider, $urlRouterProvider, $locationProvider) {
 		})
 		.state('menu',{
 			url: '/menu',
-			templateUrl: 'templates/menu.html'
+			templateUrl: 'templates/menu.html',
+			controller: 'MenuCtrl'
 		});
 	function skipIfLoggedIn($q, $auth) {
 		var deferred = $q.defer();
@@ -115,6 +116,9 @@ function MainCtrl(Account) {
 
 HomeCtrl.$inject = ["Account"];
 function HomeCtrl(Account) {
+	
+}
+function MenuCtrl() {
 	
 }
 
