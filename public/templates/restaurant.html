@@ -1,10 +1,8 @@
 <div class="content" ng-controller="RestaurantCtrl as restaurant">
-<h3> Step1: Pick a Restaurant </h3>
-<a href-"#">			
-<div id="restBox" ng-repeat="place in places.restaurants">
-		<p><strong>Name: {{place.menu.foods[0].name}}</strong></p>
-		<p><strong>Price: {{place.menu.foods[0].price | currency}}</strong></p>
-		</a>
+<h3> Step2: Select Food Items</h3>		
+<h4>Menu</h4>
+	<div class="restBox" ng-repeat="food in restaurant.menu.foods">
+		<p>Item: {{food.name}}</p>
 		<hr>
-</div>
+	</div>
 </div>

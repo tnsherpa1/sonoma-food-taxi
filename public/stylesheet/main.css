@@ -15,7 +15,7 @@ body {
 .navItems, .navbar-brand {
 	color: #ae94c1;
 }
-#restBox {
+.restBox {
 	background: rgba(255, 255, 255, 0.8);
 	color: #ae94c1;
 	padding: 5px;

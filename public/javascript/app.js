@@ -8,7 +8,7 @@ app.controller('LogoutCtrl', LogoutCtrl);
 app.controller('ProfileCtrl', ProfileCtrl);
 app.controller('ContactCtrl', ContactCtrl);
 app.controller('RestaurantsCtrl', RestaurantsCtrl);
-app.controller('MenuCtrl', MenuCtrl);
+app.controller('RestaurantCtrl', RestaurantCtrl);
 
 app.service('Account', Account);
 app.config(configRoutes);
@@ -189,17 +189,17 @@ RestaurantsCtrl.$inject = ["$http"];
 					console.log(vm.restaurants);
 				});
 	}
-//TODO: use state params to grab specific restaurant
-RestaurantCtrl.$inject = ["$http", "$stateParams"];
-function RestaurantCtrl($http, $stateParams){
+
+RestaurantCtrl.$inject = ["$http", "$stateParams", "$scope"];
+function RestaurantCtrl($http, $stateParams, $scope){
 	var vm = this;
-	vm.menu = [];
+	vm.restaurant = [];
+	var restaurantId = $stateParams.id;
 	$http
-			.get('/api/restaurants/:id')
+			.get('/api/restaurants/'+ restaurantId)
 			.then(function(response) {
-				vm.restaurant = response.data;
-				console.log(vm.restaurant);
-				console.log("fasdf: ", $stateParams.id)
+				$scope.restaurant = response.data;
+				// console.log(vm.restaurant); //TODO: Ask why it prints twice
 			});
 }
 ///////////////////////////////////////////////////////////////////////////////
