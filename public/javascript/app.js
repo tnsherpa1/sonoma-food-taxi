@@ -9,7 +9,7 @@ app.controller('ProfileCtrl', ProfileCtrl);
 app.controller('ContactCtrl', ContactCtrl);
 app.controller('RestaurantsCtrl', RestaurantsCtrl);
 app.controller('RestaurantCtrl', RestaurantCtrl);
-app.factory('Cart', CartCtrl);
+app.service('Cart', Cart);
 app.service('Account', Account);
 // app.service('Cart', Cart);
 app.config(configRoutes);
@@ -119,15 +119,14 @@ HomeCtrl.$inject = ["Account"];
 function HomeCtrl(Account) {
 	
 }
-function CartCtrl() {
+/*function CartCtrl() {
 	var vm = this;
 	vm.cart = {};
-	vm.addToCart = function(){
+	vm.add = function(){
 		console.log("controller called....");
 		console.log(vm.cart);
 	};
-
-}
+}*/
 
 LoginCtrl.$inject = ["$location", "Account"];
 function LoginCtrl($location, Account) {
@@ -197,9 +196,10 @@ RestaurantsCtrl.$inject = ["$http"];
 				});
 	}
 
-RestaurantCtrl.$inject = ["$http", "$stateParams", "$scope", "ngCart"];
-function RestaurantCtrl($http, $stateParams, $scope, ngCart){
-	console.log(ngCart);
+RestaurantCtrl.$inject = ["$http", "$stateParams", "$scope", "ngCart", "Cart"];
+function RestaurantCtrl($http, $stateParams, $scope, ngCart, Cart){
+	$scope.Cart = Cart;
+	console.log(Cart);
 	var vm = this;
 	vm.restaurant = [];
 	var restaurantId = $stateParams.id;
@@ -296,7 +296,36 @@ function Account($http, $q, $auth) {
 		);
 	}
 }
-
+Cart.inject = ["$http"];
+function Cart($http) {
+	var self = this;
+	self.add = function(item, restaurant) {
+		console.log("calledcalled!");
+    if (!self.restaurant || !self.restaurant.id) {
+      self.restaurant = {
+        id: restaurant.id,
+        name: restaurant.name,
+        description: restaurant.description
+      };
+    }
+ 
+     if (self.restaurant.id == restaurant.id) {
+       self.items.forEach(function(cartItem) {
+         if (item && cartItem.name == item.name) {
+         cartItem.qty ++;
+        item = null;
+        }
+      });
+      if (item) {
+        item = angular.copy(item);
+        item.qty = 1;
+        self.items.push(item);
+      }
+    } else {
+     alert('Can not mix menu items from different restaurants.');
+   }
+ };
+}
 
 
 

@@ -9,17 +9,12 @@
 
 
 		<div ng-repeat="food in restaurant.menu.foods">
-			<p>{{food.name}}</p>
-			<p>{{food.price}}</p>	
-			<ngcart-addtocart id="{{ food._id }}" name="{{ food.name }}" price="{{ food.price }}" quantity="1" quantity-max="30">
-			Add To Cart</ngcart-addtocart>
-
-	<!-- 		<a href ng-click="addToCart(name, price)">			
+			<a href ng-click="Cart.add(food, restaurant.menu)">			
 				<span class= "pull-left">{{food.name}}</span>
 				<span class= "pull-right"> {{food.price | currency}} &nbsp
 				<i class="fa fa-cart-plus fa-lg"></i>
 				</span>
-			</a> -->
+			</a>
 			<br>
 				
 			
