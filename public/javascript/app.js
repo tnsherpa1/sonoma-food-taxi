@@ -198,8 +198,6 @@ RestaurantsCtrl.$inject = ["$http"];
 
 RestaurantCtrl.$inject = ["$http", "$stateParams", "$scope", "ngCart", "Cart"];
 function RestaurantCtrl($http, $stateParams, $scope, ngCart, Cart){
-	$scope.Cart = Cart;
-	console.log(Cart);
 	var vm = this;
 	vm.restaurant = [];
 	var restaurantId = $stateParams.id;
@@ -209,6 +207,8 @@ function RestaurantCtrl($http, $stateParams, $scope, ngCart, Cart){
 				$scope.restaurant = response.data;
 				// console.log(vm.restaurant); //TODO: Ask why it prints twice
 			});
+	$scope.Cart = Cart;
+	console.log("here: ", Cart);
 }
 ///////////////////////////////////////////////////////////////////////////////
 ////SERVICES////////SERVICES/////////SERVICES////////SERVICES/////SERVICES////
@@ -296,36 +296,18 @@ function Account($http, $q, $auth) {
 		);
 	}
 }
+
+/////CART SERVICE/////////
 Cart.$inject = ["$http"];
 function Cart($http) {
 	var self = this;
-	self.items = [];
-	self.add = function(item, restaurant) {
-		console.log("calledcalled!", Cart);
-    if (!self.restaurant || !self.restaurant.id) {
-      self.restaurant = {
-        id: restaurant.id,
-        name: restaurant.name,
-        description: restaurant.description
-      };
-    }
- 
-     if (self.restaurant.id == restaurant.id) {
-     	console.log(self.foods, "itemsitems")
-       self.foods.forEach(function(cartItem) {
-         if (item && cartItem.name == item.name) {
-         cartItem.qty ++;
-        item = null;
-        }
-      });
-      if (item) {
-        item = angular.copy(item);
-        item.qty = 1;
-        self.foods.push(item);
-      }
-    } else {
-     alert('Can not mix menu items from different restaurants.');
-   }
+	self.cart = [];
+	self.add = function(item, price) {
+   	var itemcart = new Object({item: item , price: price});
+
+   	window.data = itemcart;
+   	self.cart.push(itemcart);
+		console.log("adding item to cart:", item , "price: ", price);
  };
 }
 
