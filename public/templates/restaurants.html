@@ -2,7 +2,6 @@
 <h3> Step1: Pick a Restaurant </h3>
 <div class="restBox" ng-repeat="place in places.restaurants">
 		<a ui-sref="menu({id: place._id})">
-		<p><strong>id: {{place._id}}</strong></p>
 		<p><strong>Name: {{place.name}}</strong></p>
 		<p><strong>Cuisine: {{place.cuisine}}</strong></p>
 		<p><strong>Address: {{place.location}}</strong></p>
