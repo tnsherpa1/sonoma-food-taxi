@@ -1,8 +1,7 @@
 <div class="content">
 <!-- TODO: refactor to ul,li -->
 	<div class="restBox" ng-controller="RestaurantCtrl as restaurant">
-
-	<p>Hello</p>
+	<b><i class="fa fa-shopping-bag fa-2x pull-right">{{Cart.cart.length}}</i></b>
 		<h4 > Step2: Select Food Items</h4>		
 		<h4>Menu:</h4>
 		<span class="pull-left"><strong>Items:</strong></span><span class="pull-right"><strong>Price:</strong>&nbsp &nbsp &nbsp</span>
@@ -21,7 +20,6 @@
 	</div>
 
 	<div class="restBox">
-	<b><i class="fa fa-shopping-bag fa-2x">{{Cart.cart.length}}</i></b>
     <h4>Your order</h4>
     <form>
       <ul>
