@@ -23,8 +23,8 @@
 		    <form>
       <ul>
         <li ng-repeat="cartItem in Cart.cart">
-          <a href ng-click="cart.remove(item)"><i class="fa fa-times"></i></a>
-          {{cartItem.item.item}} &times; {{cartItem.item.price}} 
+          <a href ng-click="Cart.remove(cartItem)"><i class="fa fa-times"></i></a>
+          {{cartItem.item.item}} &times; {{cartItem.item.qty}} 
         </li>
       </ul>
       <div class="pull-right" ng-show="Cart.cart.length">

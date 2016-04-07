@@ -303,12 +303,13 @@ function Cart($http) {
 	var self = this;
 	self.cart = [];
 	self.add = function(item, price) {
-		var myCart = function(item, price) {
+		var myCart = function(item, price, qty) {
 			this.item = item;
 			this.price = price;
+			this.qty = qty;
 		};
 		// window.myCart = myCart;
-   	var itemcart = new myCart({item: item , price: price});
+   	var itemcart = new myCart({item: item , price: price, qty: 1});
 
    	window.data = itemcart;
    	self.cart.push(itemcart);
@@ -323,6 +324,17 @@ function Cart($http) {
         return sum + Number(item.item.price);
       }, 0);
     };
+//Remove items from Cart
+self.remove = function(item) {
+	console.log("removing....");
+  var index = self.cart.indexOf(item);
+  if (index >= 0) {
+    self.cart.splice(index, 1);
+  }
+  if (!self.cart.length) {
+    self.restaurant = {};
+  }
+};
 }
 
 
