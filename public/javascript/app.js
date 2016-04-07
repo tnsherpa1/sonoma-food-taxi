@@ -303,10 +303,9 @@ function Cart($http) {
 	var self = this;
 	self.cart = [];
 	self.add = function(item, price) {
-		var myCart = function(item, price, total) {
+		var myCart = function(item, price) {
 			this.item = item;
 			this.price = price;
-			this.total = total;
 		};
 		// window.myCart = myCart;
    	var itemcart = new myCart({item: item , price: price});
@@ -316,6 +315,14 @@ function Cart($http) {
 		console.log("adding item to cart:", item , "price: ", price);
 		console.log(Cart);
  };
+
+ //Total Calculator
+ self.total = function() {
+      return self.cart.reduce(function(sum, item) {
+      	console.log("hey: ", item.item.price, "and ", sum);
+        return sum + Number(item.item.price);
+      }, 0);
+    };
 }
 
 
