@@ -1,0 +1,24 @@
+{
+  "name": "sonoma-food-taxi",
+  "description": "A locality based web application, whereby customers can order from top 10 best restaurants!",
+  "main": "server.js",
+  "authors": [
+    "Tashi Sherpa"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/tnsherpa1/sonoma-food-taxi",
+  "moduleType": [
+    "node"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "ngCart": "ng-cart#^1.0.0",
+    "angular": "^1.5.3"
+  }
+}

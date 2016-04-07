@@ -5,13 +5,21 @@
 		<h4>Menu:</h4>
 		<span class="pull-left"><strong>Items:</strong></span><span class="pull-right"><strong>Price:</strong>&nbsp &nbsp &nbsp</span>
 		<br>
+
+
+
 		<div ng-repeat="food in restaurant.menu.foods">
-			<a href ng-click="addToCart()">			
+			<p>{{food.name}}</p>
+			<p>{{food.price}}</p>	
+			<ngcart-addtocart id="{{ food._id }}" name="{{ food.name }}" price="{{ food.price }}" quantity="1" quantity-max="30">
+			Add To Cart</ngcart-addtocart>
+
+	<!-- 		<a href ng-click="addToCart(name, price)">			
 				<span class= "pull-left">{{food.name}}</span>
 				<span class= "pull-right"> {{food.price | currency}} &nbsp
 				<i class="fa fa-cart-plus fa-lg"></i>
 				</span>
-			</a>
+			</a> -->
 			<br>
 				
 			

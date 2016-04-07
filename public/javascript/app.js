@@ -1,4 +1,4 @@
-var app = angular.module("foodTaxi", ['ui.router', 'satellizer']);
+var app = angular.module("foodTaxi", ['ui.router', 'satellizer', 'ngCart']);
 
 app.controller('MainCtrl', MainCtrl);
 app.controller('HomeCtrl', HomeCtrl);
@@ -9,7 +9,7 @@ app.controller('ProfileCtrl', ProfileCtrl);
 app.controller('ContactCtrl', ContactCtrl);
 app.controller('RestaurantsCtrl', RestaurantsCtrl);
 app.controller('RestaurantCtrl', RestaurantCtrl);
-
+app.factory('Cart', CartCtrl);
 app.service('Account', Account);
 // app.service('Cart', Cart);
 app.config(configRoutes);
@@ -119,7 +119,13 @@ HomeCtrl.$inject = ["Account"];
 function HomeCtrl(Account) {
 	
 }
-function MenuCtrl() {
+function CartCtrl() {
+	var vm = this;
+	vm.cart = {};
+	vm.addToCart = function(){
+		console.log("controller called....");
+		console.log(vm.cart);
+	};
 
 }
 
@@ -191,8 +197,9 @@ RestaurantsCtrl.$inject = ["$http"];
 				});
 	}
 
-RestaurantCtrl.$inject = ["$http", "$stateParams", "$scope"];
-function RestaurantCtrl($http, $stateParams, $scope){
+RestaurantCtrl.$inject = ["$http", "$stateParams", "$scope", "ngCart"];
+function RestaurantCtrl($http, $stateParams, $scope, ngCart){
+	console.log(ngCart);
 	var vm = this;
 	vm.restaurant = [];
 	var restaurantId = $stateParams.id;

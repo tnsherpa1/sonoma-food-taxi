@@ -14,6 +14,7 @@ app.use(bodyparser.json());
 
 //serve static files from public folder
 app.use(express.static(__dirname + '/public'));
+app.use("/vendor", express.static("bower_components"));
 
 //set view engine to hbs
 app.set('view engine', 'hbs');
