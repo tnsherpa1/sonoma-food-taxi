@@ -296,11 +296,12 @@ function Account($http, $q, $auth) {
 		);
 	}
 }
-Cart.inject = ["$http"];
+Cart.$inject = ["$http"];
 function Cart($http) {
 	var self = this;
+	self.items = [];
 	self.add = function(item, restaurant) {
-		console.log("calledcalled!");
+		console.log("calledcalled!", Cart);
     if (!self.restaurant || !self.restaurant.id) {
       self.restaurant = {
         id: restaurant.id,
@@ -310,7 +311,8 @@ function Cart($http) {
     }
  
      if (self.restaurant.id == restaurant.id) {
-       self.items.forEach(function(cartItem) {
+     	console.log(self.foods, "itemsitems")
+       self.foods.forEach(function(cartItem) {
          if (item && cartItem.name == item.name) {
          cartItem.qty ++;
         item = null;
@@ -319,7 +321,7 @@ function Cart($http) {
       if (item) {
         item = angular.copy(item);
         item.qty = 1;
-        self.items.push(item);
+        self.foods.push(item);
       }
     } else {
      alert('Can not mix menu items from different restaurants.');
