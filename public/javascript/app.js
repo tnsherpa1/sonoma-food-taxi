@@ -303,11 +303,18 @@ function Cart($http) {
 	var self = this;
 	self.cart = [];
 	self.add = function(item, price) {
-   	var itemcart = new Object({item: item , price: price});
+		var myCart = function(item, price, total) {
+			this.item = item;
+			this.price = price;
+			this.total = total;
+		};
+		// window.myCart = myCart;
+   	var itemcart = new myCart({item: item , price: price});
 
    	window.data = itemcart;
    	self.cart.push(itemcart);
 		console.log("adding item to cart:", item , "price: ", price);
+		console.log(Cart);
  };
 }
 

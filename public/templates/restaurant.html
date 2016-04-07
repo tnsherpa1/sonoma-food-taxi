@@ -1,13 +1,12 @@
 <div class="content">
 <!-- TODO: refactor to ul,li -->
 	<div class="restBox" ng-controller="RestaurantCtrl as restaurant">
+
+	<p>Hello</p>
 		<h4 > Step2: Select Food Items</h4>		
 		<h4>Menu:</h4>
 		<span class="pull-left"><strong>Items:</strong></span><span class="pull-right"><strong>Price:</strong>&nbsp &nbsp &nbsp</span>
 		<br>
-
-
-
 		<div ng-repeat="food in restaurant.menu.foods">
 			<a href ng-click="Cart.add(food.name, food.price)">		
 				<span class= "pull-left">{{food.name}}</span>
@@ -16,26 +15,26 @@
 				</span>
 			</a>
 			<br>
-				
-			
 			<br>
 			<hr>
 		</div>
 	</div>
 
 	<div class="restBox">
+	<b><i class="fa fa-shopping-bag fa-2x">{{Cart.cart.length}}</i></b>
     <h4>Your order</h4>
     <form>
       <ul>
-        <li ng-repeat="item in cart.items">
+        <li ng-repeat="cartItem in Cart.cart">
           <a href ng-click="cart.remove(item)"><i class="fa fa-times"></i></a>
-          {{item.qty}} &times; {{item.name}}
+          {{cartItem.item.item}} &times; {{cartItem.item.price}} 
         </li>
       </ul>
-      <div class="pull-right" ng-show="cart.items.length">
-        <a href="#/checkout" ng-disabled="!cart.items.length" class="btn">Checkout</a>
+      <div class="pull-right" ng-show="Cart.cart.length">
+        <a href="#/checkout" ng-disabled="!Cart.cart.length" class="btn btn-lg btn-danger">Checkout</a>
       </div>
       <p>
+
         <b>Total: {{cart.total() | currency}}</b>
       </p>
     </form>
