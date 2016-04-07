@@ -1,3 +1,7 @@
+.row {
+    margin-right: 41px;
+    margin-left: -175px;
+    }
 .contact {
 	width: 500px;
 }
@@ -23,15 +27,7 @@ body {
 .content {
 	margin-top: 80px;
 }
-hr {
-    margin:40px 0;
-} 
-h3 { color:#1758AA}
-h3 span {font-size:14px; display:block;}
-span[ng-click] {
-        cursor: pointer;
-    }
+li {
+	list-style: none;
+}
 
-/*.content {
-	background-color: #FFFFFF;
-}*/

@@ -1,27 +1,26 @@
-<div class="content">
-<!-- TODO: refactor to ul,li -->
-	<div class="restBox" ng-controller="RestaurantCtrl as restaurant">
-	<b><i class="fa fa-shopping-bag fa-2x pull-right">{{Cart.cart.length}}</i></b>
-		<h4 > Step2: Select Food Items</h4>		
-		<h4>Menu:</h4>
+ <div class="container content">
+	<div class="row" ng-controller="RestaurantCtrl as restaurant">
+	<h4 > Step2: Select Food Items</h4>
+	<div class="col-md-6 restBox">
 		<span class="pull-left"><strong>Items:</strong></span><span class="pull-right"><strong>Price:</strong>&nbsp &nbsp &nbsp</span>
-		<br>
 		<div ng-repeat="food in restaurant.menu.foods">
-			<a href ng-click="Cart.add(food.name, food.price)">		
+		<br>
+		<a href ng-click="Cart.add(food.name, food.price)">		
 				<span class= "pull-left">{{food.name}}</span>
 				<span class= "pull-right"> {{food.price | currency}} &nbsp
 				<i class="fa fa-cart-plus fa-lg"></i>
 				</span>
 			</a>
-			<br>
-			<br>
-			<hr>
 		</div>
 	</div>
-
-	<div class="restBox">
-    <h4>Your order</h4>
-    <form>
+	<div class="col-md-2"></div>
+		<div class="col-md-4 restBox">
+		<h4>
+			Your order:
+				<b class="pull-right">{{Cart.cart.length}}</b>
+				<i class="fa fa-shopping-bag fa-2x pull-right"></i>
+		</h4>
+		    <form>
       <ul>
         <li ng-repeat="cartItem in Cart.cart">
           <a href ng-click="cart.remove(item)"><i class="fa fa-times"></i></a>
@@ -29,12 +28,13 @@
         </li>
       </ul>
       <div class="pull-right" ng-show="Cart.cart.length">
-        <a href="#/checkout" ng-disabled="!Cart.cart.length" class="btn btn-lg btn-danger">Checkout</a>
+        <a href="#/checkout" ng-disabled="!Cart.cart.length" class="btn btn-sm btn-danger">Checkout</a>
       </div>
       <p>
 
         <b>Total: {{cart.total() | currency}}</b>
       </p>
     </form>
-  </div>
+		</div>
+	</div>
 </div>
