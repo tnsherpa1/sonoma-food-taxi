@@ -26,6 +26,7 @@ mongoose.connect('mongodb://localhost/sonoma_food_taxi');
 var Customer = require('./models/customer');
 var Restaurant = require('./models/restaurant');
 var Menu = require('./models/menu');
+var Order = require('./models/order');
   ////////////////////////////
  ///////API////ROUTES///////
 //////////////////////////
@@ -117,6 +118,22 @@ app.get('/api/restaurants/:id', function(req, res){
 			res.json(restaurant);
 		}
 	});
+});
+
+
+//TODO: post order to database
+app.post('/api/order', function(req, res) {
+  console.log(req.body);
+  var order = new Order ({
+
+  });
+
+
+
+
+
+
+  return res.send(201, { orderId: Date.now()});
 });
 
 /*

@@ -24,6 +24,12 @@ body {
 	color: #ae94c1;
 	padding: 5px;
 }
+.checkoutBox {
+	background: rgba(255, 255, 255, 0.8);
+	color: #ae94c1;
+	padding: 5px;
+	width: 100%;
+}
 .content {
 	margin-top: 80px;
 }

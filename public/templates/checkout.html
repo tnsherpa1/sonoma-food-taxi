@@ -1,8 +1,5 @@
-<form name="form">
-  <div class="container fm-panel fm-checkout">
-    <h4>Menu</h4>
-
-    <div class="row">
+<form class="content" name="form">
+    <div class="col-md-6 checkoutBox">
       <div class="span6">
         <h5>Deliver To:</h5>
         <div>{{customer.name}}</div>
@@ -43,8 +40,8 @@
       </div>
     </div>
 
-    <div>
-      <table class="table table-hover table-striped">
+    <div class="col-md-6 checkoutBox" ng-controller="RestaurantCtrl as restaurant">
+      <table class="table table-hover">
         <tr>
           <th>Qty</th>
           <th>Description</th>
@@ -52,29 +49,28 @@
           <th>Subtotal</th>
           <th></th>
         </tr>
-        <tr ng-repeat="item in cart.items">
+        <tr ng-repeat="cartItem in Cart.cart">
           <td><input type="number" ng-model="item.qty"></td>
-          <td>{{item.name}}</td>
-          <td>{{item.price | currency}}</td>
-          <td>{{item.price * item.qty | currency}}</td>
+          <td>{{cartItem.item.item}}</td>
+          <td>{{cartItem.item.price | currency}}</td>
+          <td>{{cartItem.item.price * cartItem.qty | currency}}</td>
           <td><a href ng-click="cart.remove(item)"><i class="icon-remove-sign"></i></a></td>
         </tr>
         <tr>
           <th></th>
           <th></th>
           <th>Total:</th>
-          <th>{{ cart.total() | currency }}</th>
+          <th>{{ Cart.total() | currency }}</th>
           <th></th>
         </tr>
       </table>
 
       <div class="fm-right">
-        <a href="#/menu/{{restaurantId}}" class="btn">Back to Menu</a>
-        <a href class="btn btn-danger" ng-click="cart.reset()">Clear Cart</a>
+        <a href="/menu/{{restaurantId}}" class="btn">Back to Menu</a>
+        <a href class="btn btn-danger" ng-click="Cart.cart.reset()">Clear Cart</a>
         <button class="btn btn-primary"
-                ng-disabled="form.$invalid || !cart.items.length || submitting"
+                ng-disabled="form.$invalid"
                 ng-click="purchase()">Purchase</button>
       </div>
     </div>
-  </div>
 </form>

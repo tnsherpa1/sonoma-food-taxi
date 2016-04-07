@@ -11,7 +11,6 @@ app.controller('RestaurantsCtrl', RestaurantsCtrl);
 app.controller('RestaurantCtrl', RestaurantCtrl);
 app.service('Cart', Cart);
 app.service('Account', Account);
-// app.service('Cart', Cart);
 app.config(configRoutes);
 
 // Routes
@@ -84,7 +83,13 @@ function configRoutes($stateProvider, $urlRouterProvider, $locationProvider) {
 			url: '/restaurants/:id',
 			templateUrl: 'templates/restaurant.html',
 			controller: 'RestaurantCtrl'
-		});
+		})
+		.state('checkout',{
+			url: '/checkout',
+			templateUrl: 'templates/checkout.html'
+			/*controller: 'RestaurantCtrl'*/
+		})
+		;
 	function skipIfLoggedIn($q, $auth) {
 		var deferred = $q.defer();
 		if ($auth.isAuthenticated()) {
@@ -119,14 +124,6 @@ HomeCtrl.$inject = ["Account"];
 function HomeCtrl(Account) {
 	
 }
-/*function CartCtrl() {
-	var vm = this;
-	vm.cart = {};
-	vm.add = function(){
-		console.log("controller called....");
-		console.log(vm.cart);
-	};
-}*/
 
 LoginCtrl.$inject = ["$location", "Account"];
 function LoginCtrl($location, Account) {
@@ -331,10 +328,21 @@ self.remove = function(item) {
   if (index >= 0) {
     self.cart.splice(index, 1);
   }
-  if (!self.cart.length) {
-    self.restaurant = {};
-  }
 };
+//Sumbit Order
+self.submitOrder = function() {
+  if (self.items.length) {
+    return $http.post('/api/order', {
+      items: self.items,
+      restaurant: self.restaurant,
+      payment: self.payment,
+      deliverTo: customer
+    }).then(function(response) {
+      self.reset();
+      return response.data.orderId;
+    });
+  }
+}
 }
 
 
