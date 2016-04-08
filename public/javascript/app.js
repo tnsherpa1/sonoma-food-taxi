@@ -318,7 +318,7 @@ function Cart($http) {
  self.total = function() {
       return self.cart.reduce(function(sum, item) {
       	console.log("hey: ", item.item.price, "and ", sum);
-        return sum + Number(item.item.price);
+        return sum + Number(item.item.price*item.item.qty);
       }, 0);
     };
 //Remove items from Cart
@@ -342,7 +342,7 @@ self.submitOrder = function() {
       return response.data.orderId;
     });
   }
-}
+};
 }
 
 
