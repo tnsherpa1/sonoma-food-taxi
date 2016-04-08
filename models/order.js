@@ -8,8 +8,12 @@ var OrderSchema = new Schema({
 	customerId: {type: Schema.Types.ObjectId, ref: 'Customer'},*/
 	customerName: String,
 	deliveryAddress: String,
-	
-
+	deliveryTime: String,
+	itemName: String,
+	itemQty: Number,
+	itemPrice: Number,
+	orderTotal: Number,
+	orderNo: Date
 });
 var Order = mongoose.model("Order", OrderSchema);
 module.exports = Order;

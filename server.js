@@ -123,17 +123,31 @@ app.get('/api/restaurants/:id', function(req, res){
 
 //TODO: post order to database
 app.post('/api/order', function(req, res) {
-  console.log(req.body);
+  // console.log(req.body);
   var order = new Order ({
-
+		customerName: "John Does",
+		deliveryAddress: "34 W Napa St",
+		deliveryTime: "30mins",
+		itemName: "pizza",
+		itemQty: 1,
+		itemPrice: 10,
+		orderTotal: 10,
+		orderNo: Date.now()
   });
-
-
-
-
-
-
-  return res.send(201, { orderId: Date.now()});
+  order.save(function(err, newOrder){
+  	if (err) {
+  		console.log("error: ", err.message);
+  	}
+  res.status(201).send({ newOrder: newOrder});
+  });
+});
+app.get('/api/order', function(req, res){
+	Order.find({}, function(err, allOrders) {
+		if (err) {
+			console.log("error: ", err.message);
+		}
+		res.json(allOrders);
+	});
 });
 
 /*

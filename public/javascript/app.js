@@ -193,10 +193,13 @@ RestaurantsCtrl.$inject = ["$http"];
 				});
 	}
 
-RestaurantCtrl.$inject = ["$http", "$stateParams", "$scope", "ngCart", "Cart"];
-function RestaurantCtrl($http, $stateParams, $scope, ngCart, Cart){
+RestaurantCtrl.$inject = ["$http", "$stateParams", "$scope", "ngCart", "Cart", "Account"];
+function RestaurantCtrl($http, $stateParams, $scope, ngCart, Cart, Account){
 	var vm = this;
 	vm.restaurant = [];
+	vm.currentCustomer = function() {
+		return Account.currentCustomer;
+	};
 	var restaurantId = $stateParams.id;
 	$http
 			.get('/api/restaurants/'+ restaurantId)
@@ -205,7 +208,7 @@ function RestaurantCtrl($http, $stateParams, $scope, ngCart, Cart){
 				// console.log(vm.restaurant); //TODO: Ask why it prints twice
 			});
 	$scope.Cart = Cart;
-	console.log("here: ", Cart);
+	console.log("customer show here: ", vm.currentCustomer());
 }
 ///////////////////////////////////////////////////////////////////////////////
 ////SERVICES////////SERVICES/////////SERVICES////////SERVICES/////SERVICES////
@@ -261,7 +264,7 @@ function Account($http, $q, $auth) {
 	}
 	function currentCustomer() {
 		if ( self.customer ) { return self.customer; }
-		if ( !auth.isAuthenticated() ) { return null; }
+		if ( !$auth.isAuthenticated() ) { return null; }
 
 		var deferred = $q.defer();
 		getProfile().then(
@@ -295,7 +298,7 @@ function Account($http, $q, $auth) {
 }
 
 /////CART SERVICE/////////
-Cart.$inject = ["$http"];
+Cart.$inject = ["$http", "Account"];
 function Cart($http) {
 	var self = this;
 	self.cart = [];
