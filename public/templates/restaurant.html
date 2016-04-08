@@ -1,7 +1,6 @@
- <div class="container content">
-	<div class="row" ng-controller="RestaurantCtrl as restaurant">
-	<h4 > Step2: Select Food Items</h4>
-	<div class="col-md-6 restBox">
+<div class="content" ng-controller="RestaurantCtrl as restaurant">
+	<div class="col-md-6 menuBox">
+	<h2> Menu:</h2>
 		<span class="pull-left"><strong>Items:</strong></span><span class="pull-right"><strong>Price:</strong>&nbsp &nbsp &nbsp</span>
 		<div ng-repeat="food in restaurant.menu.foods">
 		<br>
@@ -13,13 +12,13 @@
 			</a>
 		</div>
 	</div>
-	<div class="col-md-2"></div>
-		<div class="col-md-4 restBox">
-		<h4>
+	<div class="col-md-1"></div>
+		<div class="col-md-5 menuBox">
+		<h3>
 			Your order:
 				<b class="pull-right">{{Cart.cart.length}}</b>
 				<i class="fa fa-shopping-bag fa-2x pull-right"></i>
-		</h4>
+		</h3>
 		    <form>
       <ul>
         <li ng-repeat="cartItem in Cart.cart">
@@ -37,4 +36,4 @@
     </form>
 		</div>
 	</div>
-</div>
+

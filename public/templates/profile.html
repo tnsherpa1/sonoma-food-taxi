@@ -1,7 +1,10 @@
-<div class="content">
+<div class="restBox content">
 <h3>{{main.currentCustomer.name}}</h3>
 <hr>
-<p><strong>Email:</strong> {{main.currentCustomer().email}}</p>
+<div class="profileBox">
+  <h4><strong>Name:</strong> {{main.currentCustomer().name}}</h4>
+  <h4><strong>Email:</strong> {{main.currentCustomer().email}}</h4>
+</div>
 
 <hr>
 <a href="#" ng-click="profile.showEditForm=true" ng-hide="profile.showEditForm" class="btn btn-default"><i class="fa fa-pencil"></i> Edit Profile</a>

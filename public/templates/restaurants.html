@@ -1,6 +1,6 @@
-<div class="content" ng-controller="RestaurantsCtrl as places">
+<div class="content restBox" ng-controller="RestaurantsCtrl as places">
 <h3> Step1: Pick a Restaurant </h3>
-<div class="restBox" ng-repeat="place in places.restaurants">
+<div ng-repeat="place in places.restaurants">
 		<a ui-sref="menu({id: place._id})">
 		<p><strong>Name: {{place.name}}</strong></p>
 		<p><strong>Cuisine: {{place.cuisine}}</strong></p>
