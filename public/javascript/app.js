@@ -343,6 +343,11 @@ self.submitOrder = function() {
     });
   }
 };
+//Reset Cart
+  self.reset = function() {
+    self.cart = [];
+    self.restaurant = {};
+  };
 }
 
 
