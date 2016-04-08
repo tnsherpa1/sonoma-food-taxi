@@ -30,6 +30,25 @@ var Order = require('./models/order');
   ////////////////////////////
  ///////API////ROUTES///////
 //////////////////////////
+app.get('/api/me', auth.ensureAuthenticated, function (req, res) {
+  Customer.findById(req.customer, function (err, customer) {
+    res.send(customer);
+  });
+});
+
+app.put('/api/me', auth.ensureAuthenticated, function (req, res) {
+  Customer.findById(req.customer, function (err, customer) {
+    if (!customer) {
+      return res.status(400).send({ message: 'Customer not found.' });
+    }
+    customer.name = req.body.name || customer.name;
+    customer.email = req.body.email || customer.email;
+    customer.save(function(err) {
+      res.send(customer);
+    });
+  });
+});
+
 app.post('/restaurants', function(req,res){
 	var restaurant = new Restaurant({
 		name: req.body.name,

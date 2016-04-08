@@ -30,10 +30,23 @@ body {
 	padding: 5px;
 	width: 1000px;
 }
+.faqBox {
+	background: rgba(255, 255, 255, 0.8);
+	color: #ae94c1;
+	padding: 5px;
+}
 .content {
 	margin-top: 80px;
 }
 li {
 	list-style: none;
 }
+.inputBox {
+	margin-top: 3px;
+}
+.messageBox {
+	height: 100px;
+	width: 500px;
+}
+
 

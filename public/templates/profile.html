@@ -1,4 +1,23 @@
-<div class="content" ng-controller="MainCtrl">	
-	<h1>Profile page: </h1>
-	<p></p>
+<div class="content">
+<h3>{{main.currentCustomer.name}}</h3>
+<hr>
+<p><strong>Email:</strong> {{main.currentCustomer().email}}</p>
+
+<hr>
+<a href="#" ng-click="profile.showEditForm=true" ng-hide="profile.showEditForm" class="btn btn-default"><i class="fa fa-pencil"></i> Edit Profile</a>
+
+<form ng-show="profile.showEditForm" ng-submit="profile.updateProfile()">
+  <div class="form-group">
+    <input type="text" class="form-control" placeholder="Full Name"
+      ng-model="profile.new_profile.name"
+        ng-value="main.currentCustomer().name">
+  </div>
+  <div class="form-group">
+    <input type="text" class="form-control" placeholder="Email"
+      ng-model="profile.new_profile.email"
+        ng-value="main.currentCustomer().email">
+  </div>
+  <input type="submit" value="Edit Profile" class="btn btn-info">&nbsp;
+  <button ng-click="profile.showEditForm=false" class="btn btn-default">Cancel</button>
+</form>
 </div>

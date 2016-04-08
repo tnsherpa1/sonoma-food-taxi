@@ -116,7 +116,7 @@ MainCtrl.$inject = ["Account"];
 function MainCtrl(Account) {
 	var vm = this;
 	vm.currentCustomer = function() {
-		return Account.currentCustomer;
+		return Account.currentCustomer();
 	};
 }
 
